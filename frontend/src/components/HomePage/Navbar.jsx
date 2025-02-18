@@ -67,9 +67,11 @@ const Navbar = () => {
               <div className="absolute inset-0 bg-cyan-500 rounded-full blur opacity-30 animate-pulse" />
               <ViewfinderCircleIcon className="h-8 w-8 text-cyan-400 relative" />
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              CrimeRadar AI
-            </span>
+            <Link to="/">
+              <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                CrimeRadar AI
+              </span>
+            </Link>
           </motion.div>
 
           <div className="hidden md:flex items-center space-x-8">
