@@ -43,8 +43,8 @@ const MapPage = () => {
     setLoading(true);
     try {
       const url = selectedCrimeType === 'all_crimes'
-        ? `http://127.0.0.1:8000/crimes/data/?state=${state}`
-        : `http://127.0.0.1:8000/crimes/data/?state=${state}&crime_type=${selectedCrimeType}`;
+        ? `https://crimeradarai.pythonanywhere.com/crimes/data/?state=${state}`
+        : `https://crimeradarai.pythonanywhere.com/crimes/data/?state=${state}&crime_type=${selectedCrimeType}`;
 
       const response = await fetch(url);
 

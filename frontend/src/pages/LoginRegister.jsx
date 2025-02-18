@@ -48,8 +48,8 @@ const LoginRegister = () => {
         setError(null);
 
         const endpoint = isLogin
-            ? "http://localhost:8000/users/user_login/"
-            : "http://localhost:8000/users/user_register/";
+            ? "https://crimeradarai.pythonanywhere.com/users/user_login/"
+            : "https://crimeradarai.pythonanywhere.com/users/user_register/";
 
         try {
             const response = await fetch(endpoint, {
@@ -76,7 +76,7 @@ const LoginRegister = () => {
             }
 
             if (isLogin) {
-                const userResponse = await fetch("http://localhost:8000/users/user_details/", {
+                const userResponse = await fetch("https://crimeradarai.pythonanywhere.com/users/user_details/", {
                     headers: {
                         Authorization: `Bearer ${data.token}`,
                     },
