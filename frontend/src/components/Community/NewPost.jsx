@@ -5,8 +5,7 @@ import axios from "axios";
 import Navbar from "../HomePage/Navbar";
 import Footer from "../HomePage/Footer";
 import { ToastContainer, toast } from "react-toastify";
-
-const BASE_URL = "http://localhost:8000";
+import { BASE_URL } from "../../config";
 const API_URL = `${BASE_URL}/community/create_post/`;
 
 export default function NewPost() {
