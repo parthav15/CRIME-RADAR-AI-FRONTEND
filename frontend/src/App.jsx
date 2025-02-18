@@ -4,6 +4,9 @@ import MapPage from './pages/MapPage';
 import LoginRegister from './pages/LoginRegister';
 import FeedbackPage from './pages/FeedbackPage';
 import ContactusPage from './pages/ContactusPage';
+import CommunityPage from './pages/CommunityPage';
+import NewPost from './components/Community/NewPost';
+import PostDetail from './components/Community/PostDetail';
 
 function App() {
   return (
@@ -14,6 +17,10 @@ function App() {
         <Route path="/login-register" element={<LoginRegister />} />
         <Route path="/feedback" element={<FeedbackPage />} />
         <Route path="/contact-us" element={<ContactusPage />} />
+
+        <Route path="/community" element={<CommunityPage />} />
+        <Route path="/community/new-post" element={<NewPost />} />
+        <Route path="/community/posts/:id" element={<PostDetail />} />
       </Routes>
     </Router>
   );
