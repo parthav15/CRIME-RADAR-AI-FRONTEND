@@ -5,8 +5,7 @@ import { ArrowUturnLeftIcon, ChatBubbleLeftIcon } from "@heroicons/react/24/outl
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "../HomePage/Navbar";
 import Footer from "../HomePage/Footer";
-
-const BASE_URL = 'http://localhost:8000/';
+import { BASE_URL } from "../../config";
 
 const PostDetail = () => {
     const { id } = useParams();
