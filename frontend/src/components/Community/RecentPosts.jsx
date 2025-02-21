@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = "https://crimeradarai.pythonanywhere.com/";
 const API_URL = `${BASE_URL}/community/posts/`;
 
 export default function RecentPosts() {
