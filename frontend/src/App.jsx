@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import MapPage from './pages/MapPage';
 import LoginRegister from './pages/LoginRegister';
@@ -21,6 +21,7 @@ function App() {
         <Route path="/community" element={<CommunityPage />} />
         <Route path="/community/new-post" element={<NewPost />} />
         <Route path="/community/posts/:id" element={<PostDetail />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
   );
