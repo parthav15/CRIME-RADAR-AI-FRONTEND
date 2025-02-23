@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/HomePage/Navbar';
 import MapWrapper from '../components/Map/MapWrapper';
 import Footer from '../components/HomePage/Footer';
 import StateDataPanel from '../components/Map/StateDataPanel';
+import { useNavigate } from 'react-router-dom';
 
 const MapPage = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login-register');
+    }
+  }, [navigate]);
+
   const [selectedState, setSelectedState] = useState(null);
   const [selectedCrimeType, setSelectedCrimeType] = useState('all_crimes');
   const [stateData, setStateData] = useState(null);

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -6,6 +7,15 @@ import Navbar from '../components/HomePage/Navbar';
 import Footer from '../components/HomePage/Footer';
 
 const FeedbackPage = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login-register');
+    }
+  }, [navigate]);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
