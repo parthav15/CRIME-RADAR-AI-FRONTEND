@@ -4,6 +4,7 @@ import MapWrapper from '../components/Map/MapWrapper';
 import Footer from '../components/HomePage/Footer';
 import StateDataPanel from '../components/Map/StateDataPanel';
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../config';
 
 const MapPage = () => {
   const navigate = useNavigate();
@@ -53,8 +54,8 @@ const MapPage = () => {
     setLoading(true);
     try {
       const url = selectedCrimeType === 'all_crimes'
-        ? `https://crimeradarai.pythonanywhere.com/crimes/data/?state=${state}`
-        : `https://crimeradarai.pythonanywhere.com/crimes/data/?state=${state}&crime_type=${selectedCrimeType}`;
+        ? `${BASE_URL}crimes/data/?state=${state}`
+        : `${BASE_URL}crimes/data/?state=${state}&crime_type=${selectedCrimeType}`;
 
       const response = await fetch(url);
 

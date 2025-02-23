@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { BASE_URL } from "../../config";
 
-const BASE_URL = "https://crimeradarai.pythonanywhere.com/";
 const API_URL = `${BASE_URL}/community/posts/`;
 
 export default function RecentPosts() {

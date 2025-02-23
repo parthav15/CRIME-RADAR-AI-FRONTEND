@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../components/HomePage/Navbar';
 import Footer from '../components/HomePage/Footer';
+import { BASE_URL } from '../config';
 
 const FeedbackPage = () => {
   const navigate = useNavigate();
@@ -32,21 +33,44 @@ const FeedbackPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!formData.name || !formData.email || !formData.comment) {
       toast.error('Please fill out all fields!');
       return;
     }
 
-    // Here you can integrate your feedback submission logic (e.g., API call)
-    console.log('Feedback submitted:', formData);
-    toast.success('Thank you for your feedback!');
+    const bearer = localStorage.getItem('token');
+    if (!bearer) {
+      toast.error('Authentication required. Please log in.');
+      return;
+    }
 
-    // Clear the form after submission
-    setFormData({
-      name: '',
-      email: '',
-      message: ''
-    });
+    const token = bearer;
+
+    fetch(`${BASE_URL}feedback/add_feedback/`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          toast.success('Thank you for your feedback!');
+        } else {
+          toast.error(data.message || 'An error occurred while submitting your feedback. Please try again later.');
+        }
+        setFormData({
+          name: '',
+          email: '',
+          message: ''
+        });
+      })
+      .catch((error) => {
+        console.error('Error submitting feedback:', error);
+        toast.error('An error occurred while submitting your feedback. Please try again later.');
+      });
   };
 
   const formVariants = {
@@ -108,12 +132,22 @@ const FeedbackPage = () => {
             </div>
             <div className="group relative">
               <textarea
-                name="message"
+                name="comment"
                 placeholder="Your Feedback"
-                value={formData.message}
+                value={formData.comment}
                 onChange={handleInputChange}
                 rows="4"
                 className="w-full pl-4 pr-4 py-3 bg-gray-700/20 border border-gray-600 rounded-lg focus:border-white focus:ring-1 focus:ring-white/20 transition-all text-white resize-none"
+              />
+            </div>
+            <div className="group relative">
+              <input
+                type="number"
+                name="rating"
+                placeholder="Your Rating"
+                value={formData.rating}
+                onChange={handleInputChange}
+                className="w-full pl-4 pr-4 py-3 bg-gray-700/20 border border-gray-600 rounded-lg focus:border-white focus:ring-1 focus:ring-white/20 transition-all text-white"
               />
             </div>
             <motion.button
@@ -133,3 +167,4 @@ const FeedbackPage = () => {
 };
 
 export default FeedbackPage;
+

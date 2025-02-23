@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { EnvelopeIcon, LockClosedIcon, UserCircleIcon, PhoneIcon } from '@heroicons/react/24/outline';
 import Navbar from '../components/HomePage/Navbar';
 import Footer from '../components/HomePage/Footer';
+import { BASE_URL } from '../config';
 
 const LoginRegister = () => {
     const navigate = useNavigate();
@@ -48,8 +49,8 @@ const LoginRegister = () => {
         setError(null);
 
         const endpoint = isLogin
-            ? "https://crimeradarai.pythonanywhere.com/users/user_login/"
-            : "https://crimeradarai.pythonanywhere.com/users/user_register/";
+            ? `${BASE_URL}users/user_login/`
+            : `${BASE_URL}users/user_register/`;
 
         try {
             const response = await fetch(endpoint, {
@@ -76,7 +77,7 @@ const LoginRegister = () => {
             }
 
             if (isLogin) {
-                const userResponse = await fetch("https://crimeradarai.pythonanywhere.com/users/user_details/", {
+                const userResponse = await fetch(`${BASE_URL}users/user_details/`, {
                     headers: {
                         Authorization: `Bearer ${data.token}`,
                     },
